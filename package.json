@@ -85,7 +85,9 @@
     ]
   },
   "dependencies": {
-    "@akashic/pdi-types": "~1.1.1",
+    "@akashic/pdi-types": "~1.1.1"
+  },
+  "optionalDependencies": {
     "es6-promise": "^4.2.8"
   },
   "devDependencies": {
