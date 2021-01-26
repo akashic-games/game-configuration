@@ -1,74 +1,174 @@
-import { _mergeObject } from "../utils";
+import { PathUtil } from "../utils";
 
 describe("PathUtil", () => {
-	describe("_mergeObject", () => {
-		it("just copies for different type values", () => {
-			expect(_mergeObject({ a: true, b: null }, { a: 120, b: "foo", c: true })).toEqual({
-				a: 120,
-				b: "foo",
-				c: true
-			});
-
-			expect(_mergeObject({ b: false, d: "foo" }, { a: [1, 2], b: { c: 10 }, c: null })).toEqual({
-				a: [1, 2],
-				b: { c: 10 },
-				c: null,
-				d: "foo"
-			});
+	describe("resolvePath", () => {
+		it("resolves relative path", () => {
+			expect(PathUtil.resolvePath("hoge/fuga/sugoi/", "../a/./b/../c.js")).toBe("hoge/fuga/a/c.js");
+			expect(PathUtil.resolvePath("/absolute/directory/foo", "../././a.js")).toBe("/absolute/directory/a.js");
+			expect(PathUtil.resolvePath("/", "a/./b/../c.js")).toBe("/a/c.js");
+			expect(PathUtil.resolvePath("/", "a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath("./hoge/fuga/sugoi/", "../a/./b/../c.js")).toBe("./hoge/fuga/a/c.js");
+			expect(PathUtil.resolvePath("./relative/directory/foo", "../././a.js")).toBe("./relative/directory/a.js");
+			expect(PathUtil.resolvePath("", "a.js")).toBe("a.js");
+			expect(PathUtil.resolvePath("", "a/./b/../c.js")).toBe("a/c.js");
+			expect(PathUtil.resolvePath("./", "a/./b/../c.js")).toBe("./a/c.js");
+			expect(PathUtil.resolvePath("./", "a.js")).toBe("./a.js");
+			expect(PathUtil.resolvePath(".", "a/./b/../c.js")).toBe("./a/c.js");
+			expect(PathUtil.resolvePath(".", "a.js")).toBe("./a.js");
+			expect(PathUtil.resolvePath("hoge/", "../hoge/../a.js")).toBe("a.js");
+			expect(PathUtil.resolvePath("hoge/", "../hoge/a.js")).toBe("hoge/a.js");
+			expect(PathUtil.resolvePath("hoge/", "./hoge/a.js")).toBe("hoge/hoge/a.js");
+			expect(PathUtil.resolvePath("http://hoge/fuga/sugoi/", "../a/./b/../c.js")).toBe("http://hoge/fuga/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test/absolute/directory/foo/", "../././a.js")).toBe(
+				"http://foo.test/absolute/directory/a.js"
+			);
+			expect(PathUtil.resolvePath("http://foo.test:80/", "a/./b/../c.js")).toBe("http://foo.test:80/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test/", "a.js")).toBe("http://foo.test/a.js");
+			expect(PathUtil.resolvePath("http://hoge/fuga/sugoi", "../a/./b/../c.js")).toBe("http://hoge/fuga/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test/absolute/directory/foo", "../././a.js")).toBe(
+				"http://foo.test/absolute/directory/a.js"
+			);
+			expect(PathUtil.resolvePath("http://foo.test:80", "a/./b/../c.js")).toBe("http://foo.test:80/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test", "a.js")).toBe("http://foo.test/a.js");
 		});
 
-		it("just copies primitive values", () => {
-			expect(_mergeObject({ a: 120, b: "foo", c: null, d: true }, { a: 10, b: "bar", d: false })).toEqual({
-				a: 10,
-				b: "bar",
-				c: null,
-				d: false
-			});
+		it("resolves absolute path", () => {
+			expect(PathUtil.resolvePath("hoge/fuga/sugoi/", "/a/./b/../c.js")).toBe("/a/c.js");
+			expect(PathUtil.resolvePath("/absolute/directory/foo", "..//././a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath("/", "/a/./b/../c.js")).toBe("/a/c.js");
+			expect(PathUtil.resolvePath("/", "/a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath("./hoge/fuga/sugoi/", "/a/./b/../c.js")).toBe("/a/c.js");
+			expect(PathUtil.resolvePath("./relative/directory/foo", "/./a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath("", "/a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath("", "/a/./b/../c.js")).toBe("/a/c.js");
+			expect(PathUtil.resolvePath("./", "a/.//b//c.js")).toBe("/c.js");
+			expect(PathUtil.resolvePath("./", "/a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath(".", "/a/./b/../c.js")).toBe("/a/c.js");
+			expect(PathUtil.resolvePath(".", "/a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath("hoge/", "/hoge/../a.js")).toBe("/a.js");
+			expect(PathUtil.resolvePath("hoge/", "/hoge/a.js")).toBe("/hoge/a.js");
+			expect(PathUtil.resolvePath("http://hoge/fuga/sugoi/", "/a/./b/../c.js")).toBe("http://hoge/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test/absolute/directory/foo/", "//./a.js")).toBe("http://foo.test/a.js");
+			expect(PathUtil.resolvePath("http://foo.test:80/", "/a/./b/../c.js")).toBe("http://foo.test:80/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test/", "/a.js")).toBe("http://foo.test/a.js");
+			expect(PathUtil.resolvePath("http://hoge/fuga/sugoi", "..//a/./b/../c.js")).toBe("http://hoge/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test/absolute/directory/foo", "/a.js")).toBe("http://foo.test/a.js");
+			expect(PathUtil.resolvePath("http://foo.test:80", "/a/./b/../c.js")).toBe("http://foo.test:80/a/c.js");
+			expect(PathUtil.resolvePath("http://foo.test", "/a.js")).toBe("http://foo.test/a.js");
 		});
 
-		it("concatenates arrays", () => {
-			expect(_mergeObject({ a: [1, 10], b: ["foo", 1], c: [] }, { a: [2, ["tee"]], b: [], c: [true, false] })).toEqual({
-				a: [1, 10, 2, ["tee"]],
-				b: ["foo", 1],
-				c: [true, false]
-			});
+		it("rejects invalid arguments", () => {
+			expect(() => {
+				PathUtil.resolvePath("hoge/", "../../a.js");
+			}).toThrowError("PathUtil.resolvePath: invalid arguments");
+			expect(() => {
+				PathUtil.resolvePath(".", "../a.js");
+			}).toThrowError("PathUtil.resolvePath: invalid arguments");
+			expect(() => {
+				PathUtil.resolvePath("./", "../a.js");
+			}).toThrowError("PathUtil.resolvePath: invalid arguments");
+			expect(() => {
+				PathUtil.resolvePath("./hoge", "./../../a.js");
+			}).toThrowError("PathUtil.resolvePath: invalid arguments");
 		});
+	});
 
-		it("recursively merges objects", () => {
-			expect(
-				_mergeObject(
-					{
-						a: {
-							a1: [1, 2],
-							a2: false,
-							a3: { a31: null },
-							a4: [false],
-							a5: null
-						}
-					},
-					{
-						a: {
-							a1: [3],
-							a2: true,
-							a3: { a32: 1 },
-							a4: null,
-							a6: { a61: "foo" }
-						}
-					}
-				)
-			).toEqual({
-				a: {
-					a1: [1, 2, 3],
-					a2: true,
-					a3: {
-						a31: null,
-						a32: 1
-					},
-					a4: null,
-					a5: null,
-					a6: { a61: "foo" }
-				}
-			});
+	it("resolveExtname", () => {
+		expect(PathUtil.resolveExtname("hoge/fuga/sugoi/foo.js")).toBe(".js");
+		expect(PathUtil.resolveExtname("/absolute/directory/bar.js")).toBe(".js");
+		expect(PathUtil.resolveExtname("/")).toBe("");
+		expect(PathUtil.resolveExtname("")).toBe("");
+	});
+
+	it("resolveDirname", () => {
+		expect(PathUtil.resolveDirname("hoge/fuga/sugoi/c.js")).toBe("hoge/fuga/sugoi");
+		expect(PathUtil.resolveDirname("hoge")).toBe("hoge");
+		expect(PathUtil.resolveDirname("")).toBe("");
+	});
+
+	it("makeNodeModulePaths", () => {
+		let paths = PathUtil.makeNodeModulePaths("/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/eee");
+		expect(paths).toEqual([
+			"/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/eee/node_modules",
+			"/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/node_modules",
+			"/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules",
+			"/foo/bar/zoo/node_modules/aaa/node_modules",
+			"/foo/bar/zoo/node_modules"
+		]);
+
+		paths = PathUtil.makeNodeModulePaths("/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/eee/");
+		expect(paths).toEqual([
+			"/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/eee/node_modules",
+			"/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/node_modules",
+			"/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules",
+			"/foo/bar/zoo/node_modules/aaa/node_modules",
+			"/foo/bar/zoo/node_modules"
+		]);
+
+		paths = PathUtil.makeNodeModulePaths("/foo/bar/zoo/aaa");
+		expect(paths).toEqual([
+			"/foo/bar/zoo/aaa/node_modules",
+			"/foo/bar/zoo/node_modules",
+			"/foo/bar/node_modules",
+			"/foo/node_modules",
+			"/node_modules"
+		]);
+
+		paths = PathUtil.makeNodeModulePaths("/foo/bar/");
+		expect(paths).toEqual(["/foo/bar/node_modules", "/foo/node_modules", "/node_modules"]);
+
+		paths = PathUtil.makeNodeModulePaths("/");
+		expect(paths).toEqual(["/node_modules"]);
+
+		paths = PathUtil.makeNodeModulePaths("/node_modules/foo/node_modules/bar/node_modules/aaa");
+		expect(paths).toEqual([
+			"/node_modules/foo/node_modules/bar/node_modules/aaa/node_modules",
+			"/node_modules/foo/node_modules/bar/node_modules",
+			"/node_modules/foo/node_modules",
+			"/node_modules"
+		]);
+
+		paths = PathUtil.makeNodeModulePaths("https://hoge.test/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/eee");
+		expect(paths).toEqual([
+			"https://hoge.test/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/eee/node_modules",
+			"https://hoge.test/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules/ddd/node_modules",
+			"https://hoge.test/foo/bar/zoo/node_modules/aaa/node_modules/ccc/node_modules",
+			"https://hoge.test/foo/bar/zoo/node_modules/aaa/node_modules",
+			"https://hoge.test/foo/bar/zoo/node_modules"
+		]);
+
+		paths = PathUtil.makeNodeModulePaths("https://hoge.test/foo/bar/zoo/aaa");
+		expect(paths).toEqual([
+			"https://hoge.test/foo/bar/zoo/aaa/node_modules",
+			"https://hoge.test/foo/bar/zoo/node_modules",
+			"https://hoge.test/foo/bar/node_modules",
+			"https://hoge.test/foo/node_modules",
+			"https://hoge.test/node_modules"
+		]);
+
+		paths = PathUtil.makeNodeModulePaths("https://hoge.test/");
+		expect(paths).toEqual(["https://hoge.test/node_modules"]);
+		paths = PathUtil.makeNodeModulePaths("https://hoge.test");
+		expect(paths).toEqual(["https://hoge.test/node_modules"]);
+
+		paths = PathUtil.makeNodeModulePaths("https://node_modules/");
+		expect(paths).toEqual(["https://node_modules/node_modules"]);
+		paths = PathUtil.makeNodeModulePaths("https://node_modules");
+		expect(paths).toEqual(["https://node_modules/node_modules"]);
+	});
+
+	it("splitPath", () => {
+		expect(PathUtil.splitPath("http://example.com/file.ext")).toEqual({
+			host: "http://example.com",
+			path: "/file.ext"
+		});
+		expect(PathUtil.splitPath("http://example.com")).toEqual({
+			host: "http://example.com",
+			path: "/"
+		});
+		expect(PathUtil.splitPath("example/file.ext")).toEqual({
+			host: "",
+			path: "example/file.ext"
 		});
 	});
 });
