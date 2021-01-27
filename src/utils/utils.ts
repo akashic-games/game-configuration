@@ -86,7 +86,7 @@ export function _mergeObject(target: any, source: any): any {
 				_mergeObject(target[k], sourceVal);
 			}
 		} else {
-			throw new Error("PdiUtil._mergeObject(): unknown type");
+			throw new Error("_mergeObject(): unknown type");
 		}
 	}
 	return target;
@@ -99,7 +99,7 @@ function _normalizeAssets(configuration: GameConfiguration, assetBase: string): 
 	const assets: { [assetId: string]: AssetConfiguration } = {};
 
 	function addAsset(assetId: string, asset: AssetConfiguration): void {
-		if (assets.hasOwnProperty(assetId)) throw new Error("Game#_normalizeAssets: asset ID already exists: " + assetId);
+		if (assets.hasOwnProperty(assetId)) throw new Error("_normalizeAssets: asset ID already exists: " + assetId);
 		assets[assetId] = asset;
 	}
 
