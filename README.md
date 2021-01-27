@@ -44,7 +44,7 @@ var utils = require("@akashic/game-configuration/lib/utils");
 
 ...
 
-var loadConfiguration = utils.makeLoadConfigurationFunc(platfrom);
+var loadConfiguration = utils.makeLoadConfigurationFunc(loadGameConfiguration);
 loadConfiguration(...);
 ```
 

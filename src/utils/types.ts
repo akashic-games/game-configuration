@@ -1,3 +1,1 @@
-export interface PlatformLike {
-	loadGameConfiguration(url: string, callback: (err: any, configuration: any) => void): void;
-}
+export type LoadGameConfigurationFunc = (url: string, callback: (err: any, configuration: any) => void) => void;

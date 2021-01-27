@@ -1,7 +1,6 @@
 import deepcopy from "deepcopy";
 import { CascadeGameConfiguration, GameConfiguration, NormalizedGameConfiguration } from "../GameConfiguration";
-import { makeLoadConfigurationFunc, _mergeObject } from "../utils";
-import { Platform } from "./helpers/Platform";
+import { LoadGameConfigurationFunc, makeLoadConfigurationFunc, _mergeObject } from "../utils";
 
 describe("utils", () => {
 	const confs: { [path: string]: GameConfiguration | CascadeGameConfiguration | any } = {
@@ -102,22 +101,19 @@ describe("utils", () => {
 		}
 	};
 
-	const platform = new Platform();
-	jest.spyOn(platform, "loadGameConfiguration").mockImplementation((url, callback) => {
+	const loadGameConfiguration: LoadGameConfigurationFunc = jest.fn((url, callback) => {
 		if (url === "throw_error") {
 			return void callback(new Error("throw_error"), undefined);
 		}
 		const conf = deepcopy(confs[url]);
 		if (conf) {
-			// console.log("mock", url, conf);
 			return void callback(null, conf);
 		} else {
-			console.log("failure:", url);
 			return void callback(new Error("couldn't load game configuration"), undefined);
 		}
 	});
 
-	const loadGameConfiguration = makeLoadConfigurationFunc(platform);
+	const loadConfiguration = makeLoadConfigurationFunc(loadGameConfiguration);
 
 	async function promisifiedLoad(
 		url: string,
@@ -125,7 +121,7 @@ describe("utils", () => {
 		assetBase: string | undefined
 	): Promise<NormalizedGameConfiguration> {
 		return new Promise((resolve, reject) => {
-			loadGameConfiguration(url, configurationBase, assetBase, (err, conf) => (err ? reject(err) : resolve(conf!)));
+			loadConfiguration(url, configurationBase, assetBase, (err, conf) => (err ? reject(err) : resolve(conf!)));
 		});
 	}
 

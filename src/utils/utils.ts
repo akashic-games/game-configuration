@@ -2,19 +2,19 @@ import { Promise } from "es6-promise";
 import { AssetConfiguration } from "../AssetConfiguration";
 import { GameConfiguration, NormalizedGameConfiguration, CascadeGameConfiguration } from "../GameConfiguration";
 import { PathUtil } from "./PathUtil";
-import { PlatformLike } from "./types";
+import { LoadGameConfigurationFunc } from "./types";
 
 export type LoadConfigurationFunc = ReturnType<typeof makeLoadConfigurationFunc>;
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function makeLoadConfigurationFunc(pf: PlatformLike) {
+export function makeLoadConfigurationFunc(loadConfiguration: LoadGameConfigurationFunc) {
 	function loadResolvedConfiguration(
 		url: string,
 		configurationBase: string | undefined,
 		assetBase: string | undefined,
 		callback: (err: Error | null, conf?: NormalizedGameConfiguration) => void
 	): void {
-		pf.loadGameConfiguration(url, (err: any, conf: CascadeGameConfiguration | GameConfiguration) => {
+		loadConfiguration(url, (err: any, conf: CascadeGameConfiguration | GameConfiguration) => {
 			if (err) {
 				return void callback(err);
 			}
