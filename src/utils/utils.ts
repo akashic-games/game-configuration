@@ -10,8 +10,8 @@ export type LoadConfigurationFunc = ReturnType<typeof makeLoadConfigurationFunc>
 export function makeLoadConfigurationFunc(loadConfiguration: LoadGameConfigurationFunc) {
 	function loadResolvedConfiguration(
 		url: string,
-		configurationBase: string | undefined,
 		assetBase: string | undefined,
+		cascadeBase: string | undefined,
 		callback: (err: Error | null, conf?: NormalizedGameConfiguration) => void
 	): void {
 		loadConfiguration(url, (err: any, conf: CascadeGameConfiguration | GameConfiguration) => {
@@ -29,11 +29,11 @@ export function makeLoadConfigurationFunc(loadConfiguration: LoadGameConfigurati
 			}
 			const defs = conf.definitions.map(def => {
 				if (typeof def === "string") {
-					const resolvedUrl = configurationBase ? PathUtil.resolvePath(configurationBase, def) : def;
-					return promisifiedLoad(resolvedUrl, configurationBase, undefined);
+					const resolvedUrl = cascadeBase ? PathUtil.resolvePath(cascadeBase, def) : def;
+					return promisifiedLoad(resolvedUrl, undefined, cascadeBase);
 				} else {
-					const resolvedUrl = configurationBase ? PathUtil.resolvePath(configurationBase, def.url) : def.url;
-					return promisifiedLoad(resolvedUrl, configurationBase, def.basePath);
+					const resolvedUrl = cascadeBase ? PathUtil.resolvePath(cascadeBase, def.url) : def.url;
+					return promisifiedLoad(resolvedUrl, def.basePath, cascadeBase);
 				}
 			});
 			Promise.all(defs)
@@ -43,11 +43,11 @@ export function makeLoadConfigurationFunc(loadConfiguration: LoadGameConfigurati
 	}
 	function promisifiedLoad(
 		url: string,
-		configurationBase: string | undefined,
-		assetBase: string | undefined
+		assetBase: string | undefined,
+		cascadeBase: string | undefined
 	): Promise<NormalizedGameConfiguration> {
 		return new Promise((resolve: (conf: NormalizedGameConfiguration) => void, reject) => {
-			loadResolvedConfiguration(url, configurationBase, assetBase, (err, conf) => (err ? reject(err) : resolve(conf!)));
+			loadResolvedConfiguration(url, assetBase, cascadeBase, (err, conf) => (err ? reject(err) : resolve(conf!)));
 		});
 	}
 	return loadResolvedConfiguration;
