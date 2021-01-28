@@ -117,17 +117,17 @@ describe("utils", () => {
 
 	async function promisifiedLoad(
 		url: string,
-		configurationBase: string | undefined,
-		assetBase: string | undefined
+		assetBase: string | undefined,
+		cascadeBase: string | undefined
 	): Promise<NormalizedGameConfiguration> {
 		return new Promise((resolve, reject) => {
-			loadConfiguration(url, configurationBase, assetBase, (err, conf) => (err ? reject(err) : resolve(conf!)));
+			loadConfiguration(url, assetBase, cascadeBase, (err, conf) => (err ? reject(err) : resolve(conf!)));
 		});
 	}
 
 	describe("makeLoadConfigurationFunc()", () => {
 		it("loads g.GameConfiguration", async () => {
-			const conf = await promisifiedLoad("conf1", "", "base");
+			const conf = await promisifiedLoad("conf1", "base", "");
 			expect(conf).toEqual({
 				width: 320,
 				height: 240,
@@ -277,7 +277,7 @@ describe("utils", () => {
 		});
 
 		it("supports configuration base url", async () => {
-			const conf = await promisifiedLoad("conf(1+2+3)", "/base/", "./");
+			const conf = await promisifiedLoad("conf(1+2+3)", "./", "/base/");
 			expect(conf).toEqual({
 				width: 800,
 				height: 450,
