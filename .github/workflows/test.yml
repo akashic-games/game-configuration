@@ -30,9 +30,9 @@ jobs:
             ${{ env.cache-version }}-${{ runner.os }}-build-
             ${{ env.cache-version }}-${{ runner.os }}-
       - name: Checkout code
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Run test
         run: |
           npm install
