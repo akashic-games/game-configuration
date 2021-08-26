@@ -24,6 +24,7 @@
     "lib"
   ],
   "eslintConfig": {
+    "root": true,
     "extends": "@akashic/eslint-config",
     "parserOptions": {
       "project": "tsconfig.jest.json",
