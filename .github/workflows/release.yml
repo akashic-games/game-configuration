@@ -7,7 +7,7 @@ on:
       - feature/*
 
 env:
-  NODE_VERSION: 14
+  NODE_VERSION: 16
   cache-version: v1
 
 jobs:
@@ -41,7 +41,6 @@ jobs:
           npm test
       - name: Publish and Release
         uses: akashic-games/action-release@v1
-        continue-on-error: true
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
