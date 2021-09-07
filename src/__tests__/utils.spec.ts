@@ -249,31 +249,22 @@ describe("utils", () => {
 			});
 		});
 
-		it("handles load failure", async done => {
-			try {
-				await promisifiedLoad("throw_error", "", "");
-				done.fail();
-			} catch (e) {
-				done();
-			}
+		it("handles load failure", done => {
+			promisifiedLoad("throw_error", "", "")
+				.then(() => done.fail())
+				.catch((_e: any) => done());
 		});
 
-		it("handles nested load failure", async done => {
-			try {
-				await promisifiedLoad("fail", "", "");
-				done.fail();
-			} catch (e) {
-				done();
-			}
+		it("handles nested load failure", done => {
+			promisifiedLoad("fail", "", "")
+				.then(() => done.fail())
+				.catch((_e: any) => done());
 		});
 
-		it("catches normalize failure", async done => {
-			try {
-				await promisifiedLoad("fail2", "", "");
-				done.fail();
-			} catch (e) {
-				done();
-			}
+		it("catches normalize failure", done => {
+			promisifiedLoad("fail2", "", "")
+				.then(() => done.fail())
+				.catch((_e: any) => done());
 		});
 
 		it("supports configuration base url", async () => {
