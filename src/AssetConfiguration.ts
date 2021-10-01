@@ -1,4 +1,4 @@
-import { AudioAssetHint, ImageAssetHint } from "@akashic/pdi-types";
+import { AudioAssetHint, ImageAssetHint, VectorImageAssetHint } from "@akashic/pdi-types";
 
 /**
  * アセット宣言
@@ -30,7 +30,8 @@ export type AssetConfiguration =
 	| ImageAssetConfigurationBase
 	| TextAssetConfigurationBase
 	| ScriptAssetConfigurationBase
-	| VideoAssetConfigurationBase;
+	| VideoAssetConfigurationBase
+	| VectorImageAssetConfigurationBase;
 
 /**
  * Assetの設定の共通部分。
@@ -170,4 +171,29 @@ export interface ScriptAssetConfigurationBase extends AssetConfigurationBase {
 	 * Assetの種類。
 	 */
 	type: "script";
+}
+
+/**
+ * VectorImageAssetの設定。
+ */
+export interface VectorImageAssetConfigurationBase extends AssetConfigurationBase {
+	/**
+	 * Assetの種類。
+	 */
+	type: "vector-image";
+
+	/**
+	 * 幅。
+	 */
+	width: number;
+
+	/**
+	 * 高さ。
+	 */
+	height: number;
+
+	/**
+	 * ヒント。
+	 */
+	hint?: VectorImageAssetHint;
 }
