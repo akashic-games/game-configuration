@@ -71,7 +71,7 @@ export interface AssetConfigurationBase extends AssetConfigurationCommonBase {
  * CommonAreaの短縮表記。
  * 各要素は順に CommonArea の x, y, width, height に読み替えられる。
  */
-export type ShortenedCommonArea = [number, number, number, number];
+export type CommonAreaShortened = [number, number, number, number];
 
 /**
  * ImageAssetの設定。
@@ -101,7 +101,7 @@ export interface ImageAssetConfigurationBase extends AssetConfigurationBase {
 	 * 切り出す領域。
 	 * 指定した場合、その部分だけの画像アセットとして扱う。
 	 */
-	slice?: CommonArea | ShortenedCommonArea;
+	slice?: CommonArea | CommonAreaShortened;
 }
 
 /**
