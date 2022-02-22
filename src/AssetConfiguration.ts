@@ -1,4 +1,4 @@
-import { AudioAssetHint, ImageAssetHint } from "@akashic/pdi-types";
+import { AudioAssetHint, ImageAssetHint, VectorImageAssetHint, CommonArea } from "@akashic/pdi-types";
 
 /**
  * アセット宣言
@@ -30,7 +30,8 @@ export type AssetConfiguration =
 	| ImageAssetConfigurationBase
 	| TextAssetConfigurationBase
 	| ScriptAssetConfigurationBase
-	| VideoAssetConfigurationBase;
+	| VideoAssetConfigurationBase
+	| VectorImageAssetConfigurationBase;
 
 /**
  * Assetの設定の共通部分。
@@ -54,7 +55,6 @@ export interface AssetConfigurationBase extends AssetConfigurationCommonBase {
 
 	/**
 	 * Assetを表すファイルのrequire解決用の仮想ツリーにおけるパス。
-	 * `type` が `"script"` の場合にのみ存在する。
 	 * 省略するとエンジンにより自動的に設定される。
 	 */
 	// エンジン開発者は `Game` オブジェクト作成前に、省略された `virtualPath` を補完する必要がある。
@@ -66,6 +66,12 @@ export interface AssetConfigurationBase extends AssetConfigurationCommonBase {
 	 */
 	global?: boolean;
 }
+
+/**
+ * CommonAreaの短縮表記。
+ * 各要素は順に CommonArea の x, y, width, height に読み替えられる。
+ */
+export type CommonAreaShortened = [number, number, number, number];
 
 /**
  * ImageAssetの設定。
@@ -90,6 +96,12 @@ export interface ImageAssetConfigurationBase extends AssetConfigurationBase {
 	 * ヒント。akashic-engineが最適なパフォーマンスを発揮するための情報。
 	 */
 	hint?: ImageAssetHint;
+
+	/**
+	 * 切り出す領域。
+	 * 指定した場合、その部分だけの画像アセットとして扱う。
+	 */
+	slice?: CommonArea | CommonAreaShortened;
 }
 
 /**
@@ -170,4 +182,29 @@ export interface ScriptAssetConfigurationBase extends AssetConfigurationBase {
 	 * Assetの種類。
 	 */
 	type: "script";
+}
+
+/**
+ * VectorImageAssetの設定。
+ */
+export interface VectorImageAssetConfigurationBase extends AssetConfigurationBase {
+	/**
+	 * Assetの種類。
+	 */
+	type: "vector-image";
+
+	/**
+	 * 幅。
+	 */
+	width: number;
+
+	/**
+	 * 高さ。
+	 */
+	height: number;
+
+	/**
+	 * ヒント。
+	 */
+	hint?: VectorImageAssetHint;
 }
