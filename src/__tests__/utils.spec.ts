@@ -250,27 +250,15 @@ describe("utils", () => {
 		});
 
 		it("handles load failure", async () => {
-			try {
-				await promisifiedLoad("throw_error", "", "");
-			} catch (e) {
-				expect(e).toBeDefined();
-			}
+			await expect(promisifiedLoad("throw_error", "", "")).rejects.toThrow();
 		});
 
 		it("handles nested load failure", async () => {
-			try {
-				await promisifiedLoad("fail", "", "");
-			} catch (e) {
-				expect(e).toBeDefined();
-			}
+			await expect(promisifiedLoad("fail", "", "")).rejects.toThrow();
 		});
 
 		it("catches normalize failure", async () => {
-			try {
-				await promisifiedLoad("fail2", "", "");
-			} catch (e) {
-				expect(e).toBeDefined();
-			}
+			await expect(promisifiedLoad("fail2", "", "")).rejects.toThrow();
 		});
 
 		it("supports configuration base url", async () => {
