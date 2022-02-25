@@ -249,31 +249,16 @@ describe("utils", () => {
 			});
 		});
 
-		it("handles load failure", async done => {
-			try {
-				await promisifiedLoad("throw_error", "", "");
-				done.fail();
-			} catch (e) {
-				done();
-			}
+		it("handles load failure", async () => {
+			await expect(promisifiedLoad("throw_error", "", "")).rejects.toThrow();
 		});
 
-		it("handles nested load failure", async done => {
-			try {
-				await promisifiedLoad("fail", "", "");
-				done.fail();
-			} catch (e) {
-				done();
-			}
+		it("handles nested load failure", async () => {
+			await expect(promisifiedLoad("fail", "", "")).rejects.toThrow();
 		});
 
-		it("catches normalize failure", async done => {
-			try {
-				await promisifiedLoad("fail2", "", "");
-				done.fail();
-			} catch (e) {
-				done();
-			}
+		it("catches normalize failure", async () => {
+			await expect(promisifiedLoad("fail2", "", "")).rejects.toThrow();
 		});
 
 		it("supports configuration base url", async () => {
