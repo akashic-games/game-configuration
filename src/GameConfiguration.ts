@@ -1,5 +1,5 @@
-import { AssetConfiguration, AssetConfigurationMap, AudioSystemConfigurationMap, ModuleMainScriptsMap } from "./AssetConfiguration";
-import { OperationPluginInfo } from "./OperationPluginInfo";
+import type { AssetConfiguration, AssetConfigurationMap, AudioSystemConfigurationMap, ModuleMainScriptsMap } from "./AssetConfiguration";
+import type { OperationPluginInfo } from "./OperationPluginInfo";
 
 /**
  * ゲームの設定を表すインターフェース。

@@ -1,6 +1,6 @@
 import deepcopy from "deepcopy";
 import type { CascadeGameConfiguration, GameConfiguration, NormalizedGameConfiguration } from "../GameConfiguration";
-import type { LoadGameConfigurationFunc} from "../utils";
+import type { LoadGameConfigurationFunc } from "../utils";
 import { makeLoadConfigurationFunc, _mergeObject } from "../utils";
 
 describe("utils", () => {
