@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.3.0
+* `GameConfiguration` に `defaultSkippingScene` を追加
+
 ## 1.2.0
 * `ImageAssetConfigurationBase#slice` を追加
 
