@@ -67,6 +67,14 @@ export interface GameConfiguration {
 	 * デフォルトローディングシーンを非表示にしたい場合は "none" を指定する。
 	 */
 	defaultLoadingScene?: "default" | "compact" | "none";
+
+	/**
+	 * デフォルトのスキッピングシーンについての指定。
+	 * 省略時または "fast-forward" を指定するとスキップ中のシーン内容をそのまま早送りで表示する。
+	 * "indicator"を指定するとスキップ中に専用のシーンを表示する。
+	 * スキップ中の描画を抑制したい場合は "none" を指定する。
+	 */
+	defaultSkippingScene?: "fast-forward" | "indicator" | "none";
 }
 
 export interface NormalizedGameConfiguration extends GameConfiguration {
