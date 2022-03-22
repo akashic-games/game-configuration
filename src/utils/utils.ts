@@ -1,8 +1,8 @@
 import { Promise } from "es6-promise";
-import { AssetConfiguration } from "../AssetConfiguration";
-import { GameConfiguration, NormalizedGameConfiguration, CascadeGameConfiguration } from "../GameConfiguration";
+import type { AssetConfiguration } from "../AssetConfiguration";
+import type { GameConfiguration, NormalizedGameConfiguration, CascadeGameConfiguration } from "../GameConfiguration";
 import { PathUtil } from "./PathUtil";
-import { LoadGameConfigurationFunc } from "./types";
+import type { LoadGameConfigurationFunc } from "./types";
 
 export type LoadConfigurationFunc = ReturnType<typeof makeLoadConfigurationFunc>;
 
@@ -113,7 +113,7 @@ function _normalizeAssets(configuration: GameConfiguration, assetBase: string): 
 			addAsset(path, asset);
 		});
 	} else if (typeof configuration.assets === "object") {
-		for (let assetId in configuration.assets) {
+		for (const assetId in configuration.assets) {
 			if (!configuration.assets.hasOwnProperty(assetId)) continue;
 			const asset = configuration.assets[assetId];
 			if (asset.path) {
