@@ -1,6 +1,7 @@
 import deepcopy from "deepcopy";
-import { CascadeGameConfiguration, GameConfiguration, NormalizedGameConfiguration } from "../GameConfiguration";
-import { LoadGameConfigurationFunc, makeLoadConfigurationFunc, _mergeObject } from "../utils";
+import type { CascadeGameConfiguration, GameConfiguration, NormalizedGameConfiguration } from "../GameConfiguration";
+import type { LoadGameConfigurationFunc } from "../utils";
+import { makeLoadConfigurationFunc, _mergeObject } from "../utils";
 
 describe("utils", () => {
 	const confs: { [path: string]: GameConfiguration | CascadeGameConfiguration | any } = {

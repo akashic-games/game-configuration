@@ -27,10 +27,10 @@ npm run build
 
 ### 型として参照する場合
 
-任意の TypeScript ファイル内でモジュールのルートを `import` してください。
+任意の TypeScript ファイル内でモジュールのルートを `import type` してください。
 
 ```javascript
-import {...} from "@akashic/game-configuration";
+import type {...} from "@akashic/game-configuration";
 ```
 
 ### game.json の正規化処理を利用する場合
