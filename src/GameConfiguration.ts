@@ -75,6 +75,8 @@ export interface GameConfiguration {
 	 * スキップ中の描画を抑制したい場合は "none" を指定する。
 	 */
 	defaultSkippingScene?: "fast-forward" | "indicator" | "none";
+
+	environment?: Environment;
 }
 
 export interface NormalizedGameConfiguration extends GameConfiguration {
@@ -105,4 +107,25 @@ export interface CascadeGameConfiguration {
 	 * `path: string` は `{ url: path }: GameConfigurationDefinitionDeclaration` として解釈される。
 	 */
 	definitions: (string | GameConfigurationDefinitionDeclaration)[];
+}
+
+export interface Environment {
+	"sandbox-runtime"?: string;
+	atsumaru?: AtsumaruEnvironment;
+	nicolive?: NicoliveEnvironment;
+	external?: External;
+}
+
+export interface AtsumaruEnvironment {
+	supportedModes?: SupportedModes[];
+}
+
+export interface NicoliveEnvironment {
+	supportedModes?: SupportedModes[];
+}
+
+export type SupportedModes = "single" | "ranking" | "multi_admission" | "multi";
+
+export interface External {
+	[key: string]: string;
 }
