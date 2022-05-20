@@ -111,20 +111,27 @@ export interface CascadeGameConfiguration {
 
 export interface Environment {
 	"sandbox-runtime"?: string;
+	"akashic-runtime"?: AkashicRuntime;
 	atsumaru?: AtsumaruEnvironment;
 	nicolive?: NicoliveEnvironment;
 	external?: External;
 }
 
+export interface AkashicRuntime {
+	version?: string;
+	flavor?: string;
+}
+
 export interface AtsumaruEnvironment {
-	supportedModes?: SupportedModes[];
+	supportedModes?: AtsumaruSupportedModes[];
 }
 
 export interface NicoliveEnvironment {
-	supportedModes?: SupportedModes[];
+	supportedModes?: NicoliveSupportedModes[];
 }
 
-export type SupportedModes = "single" | "ranking" | "multi_admission" | "multi";
+export type AtsumaruSupportedModes = "multi";
+export type NicoliveSupportedModes  = "single" | "ranking" | "multi_admission" | "multi";
 
 export interface External {
 	[key: string]: string;
