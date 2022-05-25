@@ -75,6 +75,8 @@ export interface GameConfiguration {
 	 * スキップ中の描画を抑制したい場合は "none" を指定する。
 	 */
 	defaultSkippingScene?: "fast-forward" | "indicator" | "none";
+
+	environment?: Environment;
 }
 
 export interface NormalizedGameConfiguration extends GameConfiguration {
@@ -105,4 +107,34 @@ export interface CascadeGameConfiguration {
 	 * `path: string` は `{ url: path }: GameConfigurationDefinitionDeclaration` として解釈される。
 	 */
 	definitions: (string | GameConfigurationDefinitionDeclaration)[];
+}
+
+export interface Environment {
+	"sandbox-runtime"?: string;
+	"akashic-runtime"?: AkashicRuntime | string;
+	atsumaru?: AtsumaruEnvironment;
+	nicolive?: NicoliveEnvironment;
+	external?: External;
+}
+
+export interface AkashicRuntime {
+	version: string;
+	flavor?: string;
+}
+
+export interface AtsumaruEnvironment {
+	supportedModes?: AtsumaruSupportedModes[];
+}
+
+export interface NicoliveEnvironment {
+	supportedModes?: NicoliveSupportedModes[];
+}
+
+// NOTE: akashic export html コマンドの ServiceType には "atsumaru:single" が含まれるが、 この atsumaru の supportedModes 型には "single" は含まれない。
+// アツマール向けシングルプレイゲームは（ Akashic と関係ない） HTML ゲームとして export されるものであり、 game.json を参照しないため。
+export type AtsumaruSupportedModes = "multi"; 
+export type NicoliveSupportedModes  = "single" | "ranking" | "multi_admission" | "multi";
+
+export interface External {
+	[key: string]: string;
 }
