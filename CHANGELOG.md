@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.4.0
+* `GameConfiguration` に `environment` を追加
+
 ## 1.3.0
 * `GameConfiguration` に `defaultSkippingScene` を追加
 
