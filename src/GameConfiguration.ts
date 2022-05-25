@@ -111,14 +111,14 @@ export interface CascadeGameConfiguration {
 
 export interface Environment {
 	"sandbox-runtime"?: string;
-	"akashic-runtime"?: AkashicRuntime;
+	"akashic-runtime"?: AkashicRuntime | string;
 	atsumaru?: AtsumaruEnvironment;
 	nicolive?: NicoliveEnvironment;
 	external?: External;
 }
 
 export interface AkashicRuntime {
-	version?: string;
+	version: string;
 	flavor?: string;
 }
 
