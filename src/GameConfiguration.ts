@@ -132,8 +132,8 @@ export interface NicoliveEnvironment {
 
 // NOTE: akashic export html コマンドの ServiceType には "atsumaru:single" が含まれるが、 この atsumaru の supportedModes 型には "single" は含まれない。
 // アツマール向けシングルプレイゲームは（ Akashic と関係ない） HTML ゲームとして export されるものであり、 game.json を参照しないため。
-export type AtsumaruSupportedModes = "multi"; 
-export type NicoliveSupportedModes  = "single" | "ranking" | "multi_admission" | "multi";
+export type AtsumaruSupportedModes = "multi";
+export type NicoliveSupportedModes = "single" | "ranking" | "multi_admission" | "multi";
 
 export interface External {
 	[key: string]: string;
