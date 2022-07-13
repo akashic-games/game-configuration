@@ -94,7 +94,7 @@
   "devDependencies": {
     "@akashic/eslint-config": "^1.1.0",
     "@akashic/remark-preset-lint": "^0.1.2",
-    "@types/jest": "^28.1.4",
+    "@types/jest": "^28.1.5",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "deepcopy": "^2.1.0",
     "eslint": "^8.19.0",
