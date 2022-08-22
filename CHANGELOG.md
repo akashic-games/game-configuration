@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.5.0
+* @akashic/pdi-types@1.4.0 に追従
+
 ## 1.4.0
 * `GameConfiguration` に `environment` を追加
 
