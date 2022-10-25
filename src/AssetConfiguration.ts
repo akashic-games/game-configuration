@@ -162,6 +162,11 @@ export interface AudioAssetConfigurationBase extends AssetConfigurationBase {
 	 * ヒント。
 	 */
 	hint?: AudioAssetHint;
+
+	/**
+	 * 再生開始オフセット。
+	 */
+	offset?: number;
 }
 
 /**
