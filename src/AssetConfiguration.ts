@@ -149,7 +149,7 @@ export interface AudioAssetConfigurationBase extends AssetConfigurationBase {
 	systemId: "music" | "sound";
 
 	/**
-	 * 再生時間。
+	 * 再生時間。単位はミリ秒。
 	 */
 	duration: number;
 
@@ -164,7 +164,7 @@ export interface AudioAssetConfigurationBase extends AssetConfigurationBase {
 	hint?: AudioAssetHint;
 
 	/**
-	 * 再生開始オフセット。
+	 * 再生開始位置。単位はミリ秒。
 	 */
 	offset?: number;
 }
