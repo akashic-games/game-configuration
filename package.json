@@ -1,6 +1,6 @@
 {
   "name": "@akashic/game-configuration",
-  "version": "1.6.0",
+  "version": "1.6.0-beta.0",
   "description": "Type definitions and utilities for game.json, the manifest file for Akashic Engine.",
   "main": "lib/index.js",
   "scripts": {
@@ -110,6 +110,7 @@
     "typescript": "^4.7.4"
   },
   "publishConfig": {
-    "@akashic:registry": "https://registry.npmjs.org/"
+    "@akashic:registry": "https://registry.npmjs.org/",
+    "tag": "next"
   }
 }
