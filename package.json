@@ -60,12 +60,11 @@
       "js"
     ],
     "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.jest.json"
-      }
+      "^.+\\.ts$": [
+        "ts-jest", {
+          "tsconfig": "tsconfig.jest.json"
+        }
+      ]
     },
     "testMatch": [
       "<rootDir>/src/**/*.spec.ts"
@@ -92,7 +91,7 @@
     "es6-promise": "^4.2.8"
   },
   "devDependencies": {
-    "@akashic/eslint-config": "^1.1.0",
+    "@akashic/eslint-config": "^1.1.1",
     "@akashic/remark-preset-lint": "^0.1.2",
     "@types/jest": "^29.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
