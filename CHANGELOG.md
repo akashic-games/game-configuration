@@ -1,8 +1,5 @@
 # CHANGELOG
 
-## 1.6.0-beta.0
-* 内部モジュールの更新
-
 ## 1.6.0
 * `AudioAssetConfigurationBase` に `offset` を追加
 
