@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.6.0
+* `AudioAssetConfigurationBase` に `offset` を追加
+
 ## 1.5.0
 * @akashic/pdi-types@1.4.0 に追従
 
