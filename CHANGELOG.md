@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Unreleased changes
+* `GameConfiguration` に `maxPoints` を追加
+
 ## 1.6.0
 * `AudioAssetConfigurationBase` に `offset` を追加
 
