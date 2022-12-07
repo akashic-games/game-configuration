@@ -77,8 +77,8 @@ export interface GameConfiguration {
 	defaultSkippingScene?: "fast-forward" | "indicator" | "none";
 
 	/**
-	 * 同時にタップ可能な上限を指定。
-	 * 指定された数以上のタップが同時にされた場合、maxPointsを超えたタップ以降無効となる。
+	 * 同時にポイント可能な上限を指定。
+	 * 指定された数以上のポイントが同時にされた場合、maxPoints目以降のポイントは全て無効となる。
 	 */
 	maxPoints?: number;
 
