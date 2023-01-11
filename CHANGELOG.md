@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased changes
+## 1.8.0
 * `GameConfiguration` に `maxPoints` を追加
 
 ## 1.7.0
