@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased changes
+## 1.7.0
 * `GameConfiguration#environment` に `niconico` を追加
 * `NicoliveEnvironment` に `preferredSessionParameters` を追加
 
