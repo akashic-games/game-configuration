@@ -1,4 +1,4 @@
-import { AudioAssetHint, ImageAssetHint, VectorImageAssetHint, CommonArea } from "@akashic/pdi-types";
+import type { AudioAssetHint, ImageAssetHint, VectorImageAssetHint, CommonArea } from "@akashic/pdi-types";
 
 /**
  * アセット宣言

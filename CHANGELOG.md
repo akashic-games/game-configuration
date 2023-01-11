@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.7.0
+* `GameConfiguration#environment` に `niconico` を追加
+* `NicoliveEnvironment` に `preferredSessionParameters` を追加
+
 ## 1.6.0
 * `AudioAssetConfigurationBase` に `offset` を追加
 
