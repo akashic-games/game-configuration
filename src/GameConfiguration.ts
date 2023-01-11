@@ -120,6 +120,8 @@ export interface Environment {
 	"akashic-runtime"?: AkashicRuntime | string;
 	atsumaru?: AtsumaruEnvironment;
 	nicolive?: NicoliveEnvironment;
+	// niconico は非推奨だが、互換性を保つために nicolive と並列に定義
+	niconico?: NicoliveEnvironment;
 	external?: External;
 }
 
@@ -134,6 +136,11 @@ export interface AtsumaruEnvironment {
 
 export interface NicoliveEnvironment {
 	supportedModes?: NicoliveSupportedModes[];
+	preferredSessionParameters?: PreferredSessionParameters;
+}
+
+export interface PreferredSessionParameters {
+	totalTimeLimit?: number;
 }
 
 // NOTE: akashic export html コマンドの ServiceType には "atsumaru:single" が含まれるが、 この atsumaru の supportedModes 型には "single" は含まれない。
