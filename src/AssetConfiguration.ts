@@ -187,6 +187,13 @@ export interface ScriptAssetConfigurationBase extends AssetConfigurationBase {
 	 * Assetの種類。
 	 */
 	type: "script";
+
+	/**
+	 * 他のアセットよりも優先して読み込むかどうか。
+	 * この値が真であるアセットは、エントリポイントよりも先行して実行される。
+	 * ただし preload が真のアセット同士の場合の実行順序は保証されない点に注意。
+	 */
+	preload?: boolean;
 }
 
 /**
