@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.9.0
+* `ScriptAssetConfigurationBase` に `preload` を追加
+
 ## 1.8.0
 * `GameConfiguration` に `maxPoints` を追加
 
