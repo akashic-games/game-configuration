@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased changes
+* `extractAssetPaths()` を追加
+* @akashic/pdi-types@1.7.0 に追従
+
 ## 1.9.0
 * `ScriptAssetConfigurationBase` に `preload` を追加
 
