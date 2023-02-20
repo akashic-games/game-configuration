@@ -2,22 +2,21 @@ import type { AssetConfiguration, AudioAssetConfigurationBase } from "../AssetCo
 import type { GameConfiguration } from "../GameConfiguration";
 
 interface ExtractAssetPathsParameterObject {
-	gameConfigutation: GameConfiguration;
+	gameConfiguraiton: GameConfiguration;
 	audioExtensionResolver: (asset: AudioAssetConfigurationBase) => string[];
 }
 
 // 指定されたゲーム設定された設定から全アセットと全globalScriptsのパスを取得する
 export function extractAssetPaths(params: ExtractAssetPathsParameterObject): string[] {
-	const conf = params.gameConfigutation;
-	let paths: string[] = [];
-	if (Array.isArray(conf.assets)) {
-		paths = paths.concat(conf.assets.flatMap(asset => extractPath(asset, params.audioExtensionResolver)));
+	const { assets, globalScripts } = params.gameConfiguraiton;
+	let paths: string[];
+	if (Array.isArray(assets)) {
+		paths = assets.flatMap(asset => extractPath(asset, params.audioExtensionResolver));
 	} else {
-		const assets = conf.assets;
-		paths = paths.concat(Object.keys(assets).flatMap(key => extractPath(assets[key], params.audioExtensionResolver)));
+		paths = Object.keys(assets).flatMap(key => extractPath(assets[key], params.audioExtensionResolver));
 	}
-	if (conf.globalScripts) {
-		paths = paths.concat(conf.globalScripts);
+	if (globalScripts) {
+		paths = paths.concat(globalScripts);
 	}
 	return paths;
 }
