@@ -4,7 +4,7 @@ import { extractAssetPaths } from "../utils/extractAssetPaths";
 
 describe("extractAssetPaths", () => {
 	it("指定されたGameConfigurationに登録されている全アセットのパスとglobalScriptsのパスを取得できる", () => {
-		const gameConfiguraiton: GameConfiguration = {
+		const gameConfiguration: GameConfiguration = {
 			width: 320,
 			height: 240,
 			main: "./script/main.js",
@@ -16,11 +16,11 @@ describe("extractAssetPaths", () => {
 			globalScripts: ["./node_modules/foo/bar.js"]
 		};
 		const audioExtensionResolver = (_asset: AudioAssetConfigurationBase): string[] => [];
-		const result = extractAssetPaths({ gameConfiguraiton, audioExtensionResolver });
+		const result = extractAssetPaths({ gameConfiguration, audioExtensionResolver });
 		expect(result).toEqual(["script/main.js", "script/mainScene.js", "image/chara.png", "./node_modules/foo/bar.js"]);
 	});
 	it("指定されたGameConfigurationに音声アセットが登録されている場合、指定された関数に従って音声ファイルパスが取得できる", () => {
-		const gameConfiguraiton: GameConfiguration = {
+		const gameConfiguration: GameConfiguration = {
 			width: 320,
 			height: 240,
 			main: "./script/main.js",
@@ -31,7 +31,7 @@ describe("extractAssetPaths", () => {
 			globalScripts: ["./node_modules/foo/bar.js"]
 		};
 		const audioExtensionResolver = (_asset: AudioAssetConfigurationBase): string[] => ["ogg", "aac"];
-		const result = extractAssetPaths({ gameConfiguraiton, audioExtensionResolver });
+		const result = extractAssetPaths({ gameConfiguration, audioExtensionResolver });
 		expect(result).toEqual(["script/main.js", "audio/se.ogg", "audio/se.aac", "./node_modules/foo/bar.js"]);
 	});
 });
