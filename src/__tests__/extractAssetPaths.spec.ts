@@ -26,12 +26,21 @@ describe("extractAssetPaths", () => {
 			main: "./script/main.js",
 			assets: {
 				main: { type: "script", path: "script/main.js", global: true },
-				se: { type: "audio", path: "audio/se", duration: 1000, systemId: "sound" }
+				se1: { type: "audio", path: "audio/se1", duration: 1000, systemId: "sound" },
+				// hint.extensionsが指定されている場合は、関数ではなくこちらの値が優先される
+				se2: { type: "audio", path: "audio/se2", duration: 1000, systemId: "sound", hint: { extensions: ["m4a", "aac"] } }
 			},
 			globalScripts: ["./node_modules/foo/bar.js"]
 		};
 		const audioExtensionResolver = (_asset: AudioAssetConfigurationBase): string[] => ["ogg", "aac"];
 		const result = extractAssetPaths({ gameConfiguration, audioExtensionResolver });
-		expect(result).toEqual(["script/main.js", "audio/se.ogg", "audio/se.aac", "./node_modules/foo/bar.js"]);
+		expect(result).toEqual([
+			"script/main.js",
+			"audio/se1.ogg",
+			"audio/se1.aac",
+			"audio/se2.m4a",
+			"audio/se2.aac",
+			"./node_modules/foo/bar.js"
+		]);
 	});
 });

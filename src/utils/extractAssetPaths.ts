@@ -26,7 +26,13 @@ function extractPath(
 	audioExtensionResolver: (asset: AudioAssetConfigurationBase) => string[]
 ): string | string[] {
 	if (asset.type === "audio") {
-		return audioExtensionResolver(asset).map(ext => `${asset.path}.${ext}`);
+		let extensions: string[];
+		if (asset.hint?.extensions) {
+			extensions = asset.hint.extensions;
+		} else {
+			extensions = audioExtensionResolver(asset);
+		}
+		return extensions.map(ext => `${asset.path}.${ext}`);
 	} else {
 		return asset.path;
 	}
