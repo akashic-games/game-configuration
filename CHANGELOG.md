@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased changes
+## 1.10.0
 * `extractAssetPaths()` を追加
 * @akashic/pdi-types@1.7.0 に追従
 
