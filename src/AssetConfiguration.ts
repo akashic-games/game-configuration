@@ -195,6 +195,16 @@ export interface ScriptAssetConfigurationBase extends AssetConfigurationBase {
 	 * preload が真のアセットが複数ある場合、それらの実行順序は保証されない点に注意。
 	 */
 	preload?: boolean;
+
+	/**
+	 * このアセットの実行後に exports する変数名の配列。
+	 * `["foo", "bar"]` を指定した場合、対象のスクリプトアセットの末尾に以下のコードが挿入されることが期待される。
+	 * ```
+	 * exports["foo"] = foo;
+	 * exports["bar"] = bar;
+	 * ```
+	 */
+	exports?: string[];
 }
 
 /**
