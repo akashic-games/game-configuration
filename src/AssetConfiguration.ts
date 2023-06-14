@@ -197,8 +197,9 @@ export interface ScriptAssetConfigurationBase extends AssetConfigurationBase {
 	preload?: boolean;
 
 	/**
-	 * このアセットの実行後に exports する変数名の配列。
-	 * `["foo", "bar"]` を指定した場合、対象のスクリプトアセットの末尾に以下のコードが挿入されることが期待される。
+	 * このアセットが公開する変数名の配列。指定された場合、 module.exports の一部を上書きする。
+	 * 通常は指定する必要のない値であるが、 CommonJS の形式で書かれていないスクリプトを利用するなどの際に用いることができる。
+	 * `["foo", "bar"]` を指定した場合、対象のスクリプトアセットの末尾に以下のコードが挿入されたかのように扱われる。
 	 * ```
 	 * exports["foo"] = foo;
 	 * exports["bar"] = bar;
