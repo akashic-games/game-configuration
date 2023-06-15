@@ -31,14 +31,15 @@ export type AssetConfiguration =
 	| TextAssetConfigurationBase
 	| ScriptAssetConfigurationBase
 	| VideoAssetConfigurationBase
-	| VectorImageAssetConfigurationBase;
+	| VectorImageAssetConfigurationBase
+	| BinaryAssetConfigurationBase;
 
 /**
  * Assetの設定の共通部分。
  */
 export interface AssetConfigurationCommonBase {
 	/**
-	 * Assetの種類。"image", "audio", "script", "text", "video" のいずれか。
+	 * Assetの種類。
 	 */
 	type: string;
 }
@@ -231,4 +232,19 @@ export interface VectorImageAssetConfigurationBase extends AssetConfigurationBas
 	 * ヒント。
 	 */
 	hint?: VectorImageAssetHint;
+}
+
+/**
+ * BinaryAssetの設定。
+ */
+export interface BinaryAssetConfigurationBase extends AssetConfigurationBase {
+	/**
+	 * Assetの種類。
+	 */
+	type: "binary";
+
+	/**
+	 * ファイル内容のバイト配列。
+	 */
+	data: ArrayBuffer;
 }
