@@ -31,14 +31,15 @@ export type AssetConfiguration =
 	| TextAssetConfigurationBase
 	| ScriptAssetConfigurationBase
 	| VideoAssetConfigurationBase
-	| VectorImageAssetConfigurationBase;
+	| VectorImageAssetConfigurationBase
+	| BinaryAssetConfigurationBase;
 
 /**
  * Assetの設定の共通部分。
  */
 export interface AssetConfigurationCommonBase {
 	/**
-	 * Assetの種類。"image", "audio", "script", "text", "video" のいずれか。
+	 * Assetの種類。
 	 */
 	type: string;
 }
@@ -195,6 +196,17 @@ export interface ScriptAssetConfigurationBase extends AssetConfigurationBase {
 	 * preload が真のアセットが複数ある場合、それらの実行順序は保証されない点に注意。
 	 */
 	preload?: boolean;
+
+	/**
+	 * このアセットが公開する変数名の配列。指定された場合、 module.exports の一部を上書きする。
+	 * 通常は指定する必要のない値であるが、 CommonJS の形式で書かれていないスクリプトを利用するなどの際に用いることができる。
+	 * `["foo", "bar"]` を指定した場合、対象のスクリプトアセットの末尾に以下のコードが挿入されたかのように扱われる。
+	 * ```
+	 * exports["foo"] = foo;
+	 * exports["bar"] = bar;
+	 * ```
+	 */
+	exports?: string[];
 }
 
 /**
@@ -220,4 +232,19 @@ export interface VectorImageAssetConfigurationBase extends AssetConfigurationBas
 	 * ヒント。
 	 */
 	hint?: VectorImageAssetHint;
+}
+
+/**
+ * BinaryAssetの設定。
+ */
+export interface BinaryAssetConfigurationBase extends AssetConfigurationBase {
+	/**
+	 * Assetの種類。
+	 */
+	type: "binary";
+
+	/**
+	 * ファイル内容のバイト配列。
+	 */
+	data: ArrayBuffer;
 }
