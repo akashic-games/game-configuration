@@ -1,6 +1,6 @@
 {
   "name": "@akashic/game-configuration",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "description": "Type definitions and utilities for game.json, the manifest file for Akashic Engine.",
   "main": "lib/index.js",
   "scripts": {
@@ -86,7 +86,7 @@
     ]
   },
   "dependencies": {
-    "@akashic/pdi-types": "^1.7.0"
+    "@akashic/pdi-types": "^1.10.0"
   },
   "optionalDependencies": {
     "es6-promise": "^4.2.8"

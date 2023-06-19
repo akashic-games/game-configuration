@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.11.0
+* @akashic/pdi-types@1.10.0 に追従
+* `BinaryAsset` の設定を追加
+
 ## 1.10.0
 * `extractAssetPaths()` を追加
 * @akashic/pdi-types@1.7.0 に追従
