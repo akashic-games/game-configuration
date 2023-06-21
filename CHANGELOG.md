@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.11.1
+* `BinaryAssetConfigurationBase` から `data` を削除
+
 ## 1.11.0
 * @akashic/pdi-types@1.10.0 に追従
 * `BinaryAsset` の設定を追加
