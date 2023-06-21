@@ -242,9 +242,4 @@ export interface BinaryAssetConfigurationBase extends AssetConfigurationBase {
 	 * Assetの種類。
 	 */
 	type: "binary";
-
-	/**
-	 * ファイル内容のバイト配列。
-	 */
-	data: ArrayBuffer;
 }
