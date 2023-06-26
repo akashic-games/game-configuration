@@ -1,5 +1,5 @@
 import { Promise } from "es6-promise";
-import type { AssetConfiguration } from "../AssetConfiguration";
+import type { AssetConfiguration, AssetConfigurationMap } from "../AssetConfiguration";
 import type { GameConfiguration, NormalizedGameConfiguration, CascadeGameConfiguration } from "../GameConfiguration";
 import { PathUtil } from "./PathUtil";
 import type { LoadGameConfigurationFunc } from "./types";
@@ -51,6 +51,19 @@ export function makeLoadConfigurationFunc(loadConfiguration: LoadGameConfigurati
 		});
 	}
 	return loadResolvedConfiguration;
+}
+
+/**
+ * アセット定義のマップを配列に変換する。
+ * @param assets アセット定義のマップ
+ */
+export function toAssetArray(assets: AssetConfigurationMap): (AssetConfiguration & { id: string })[] {
+	return Object.keys(assets).map(assetId => {
+		return {
+			id: assetId,
+			...assets[assetId]
+		};
+	});
 }
 
 /**
