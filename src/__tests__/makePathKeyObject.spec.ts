@@ -1,9 +1,9 @@
-import { convertToPathKeyObject } from "../utils/convertToPathKeyObject";
+import { makePathKeyObject } from "../utils/makePathKeyObject";
 
-describe("convertToPathKeyObject", () => {
-	it("can convert an array of assets", () => {
+describe("makePathKeyObject", () => {
+	it("can make an object with path keys", () => {
 		expect(
-			convertToPathKeyObject({
+			makePathKeyObject({
 				main: {
 					type: "script",
 					path: "script/main.js",
