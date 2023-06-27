@@ -1,6 +1,6 @@
 export * from "./PathUtil";
 export * from "./types";
 export * from "./utils";
-// extractAssetPathsモジュールはutils以下の他のモジュールとは無関係なのでここでexportしない
+
+// utils 以下の他のモジュールと無関係のなのモジュールはここで export しない
 // TODO: utils以下にディレクトリを切って、関係のあるモジュール毎にまとめる
-// export * from "./extractAssetPaths";

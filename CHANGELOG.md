@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.12.0
+* `makePathKeyObject()` を追加
+
 ## 1.11.1
 * `BinaryAssetConfigurationBase` から `data` を削除
 
