@@ -2,7 +2,8 @@ import type { AssetConfiguration, AssetConfigurationMap } from "../AssetConfigur
 import { toAssetArray } from "./utils";
 
 /**
- * アセットのマップまたは配列を path をキーとしたマップに変換する
+ * アセットのマップまたは配列を path をキーとしたマップに変換する。
+ * 同じパスを参照する複数のアセット定義が存在する場合、そのうちのいずれか一つしか残らないことに注意。
  * @param assetsOrAssetMap アセットのマップまたは配列
  */
 export function makePathKeyObject(assetsOrAssetMap: AssetConfigurationMap | AssetConfiguration[]): AssetConfigurationMap {
