@@ -2,11 +2,23 @@ import type { AssetConfiguration, AudioAssetConfigurationBase } from "../AssetCo
 import type { GameConfiguration } from "../GameConfiguration";
 
 interface ExtractAssetPathsParameterObject {
+	/**
+	 * ファイルパスを抜き出したい game.json の内容。
+	 */
 	gameConfiguration: GameConfiguration;
+
+	/**
+	 * オーディオアセットの拡張子を解決する関数。
+	 *
+	 * 渡されたアセット定義のファイルパスは、これが返した拡張子を加えたものとして扱われる。
+	 * 戻り値は "." 込みの拡張子の配列でなければならない。
+	 */
 	audioExtensionResolver?: (asset: AudioAssetConfigurationBase) => string[];
 }
 
-// 指定された GameConfiguration から全アセットと全globalScriptsのパスを取得する
+/**
+ * 指定された GameConfiguration から全アセットと全globalScriptsのパスを取得する
+ */
 export function extractAssetPaths(params: ExtractAssetPathsParameterObject): string[] {
 	const { assets, globalScripts } = params.gameConfiguration;
 	let paths: string[];
@@ -28,15 +40,8 @@ function extractPath(
 	audioExtensionResolver?: (asset: AudioAssetConfigurationBase) => string[]
 ): string | string[] {
 	if (asset.type === "audio") {
-		let extensions: string[];
-		if (audioExtensionResolver) {
-			extensions = audioExtensionResolver(asset);
-		} else if (asset.hint?.extensions) {
-			extensions = asset.hint.extensions;
-		} else {
-			extensions = ["ogg", "aac"]; // 後方互換性として指定
-		}
-		return extensions.map(ext => `${asset.path}.${ext}`);
+		const exts = audioExtensionResolver?.(asset) ?? asset.hint?.extensions ?? [".ogg", ".aac"];
+		return exts.map(ext => `${asset.path}${ext}`);
 	} else {
 		return asset.path;
 	}
