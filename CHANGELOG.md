@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.0
+* `extractAssetPaths()` の `audioExtensionResolver` の戻り値の拡張子に `"."` を要求するように
+
 ## 1.12.0
 * `makePathKeyObject()` を追加
 
