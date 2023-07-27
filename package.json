@@ -88,9 +88,6 @@
   "dependencies": {
     "@akashic/pdi-types": "^1.11.1"
   },
-  "optionalDependencies": {
-    "es6-promise": "^4.2.8"
-  },
   "devDependencies": {
     "@akashic/eslint-config": "^1.1.1",
     "@akashic/remark-preset-lint": "^0.1.2",

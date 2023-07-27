@@ -37,8 +37,6 @@ import type {...} from "@akashic/game-configuration";
 
 `@akashic/game-configuration/lib/utils` を `require()` してください。
 
-`utils.makeLoadConfigurationFunc()` を利用する場合、`es6-promise` を別途インストールする必要があります。
-
 ```javascript
 var utils = require("@akashic/game-configuration/lib/utils");
 

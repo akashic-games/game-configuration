@@ -1,4 +1,3 @@
-import { Promise } from "es6-promise";
 import type { AssetConfiguration, AssetConfigurationMap } from "../AssetConfiguration";
 import type { GameConfiguration, NormalizedGameConfiguration, CascadeGameConfiguration } from "../GameConfiguration";
 import { PathUtil } from "./PathUtil";
