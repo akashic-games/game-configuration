@@ -1,6 +1,6 @@
 {
   "name": "@akashic/game-configuration",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Type definitions and utilities for game.json, the manifest file for Akashic Engine.",
   "main": "lib/index.js",
   "scripts": {
