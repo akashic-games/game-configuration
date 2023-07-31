@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.0.1
+* 不要となった `es6-promise` を削除
+
 ## 2.0.0
 * `extractAssetPaths()` の `audioExtensionResolver` の戻り値の拡張子に `"."` を要求するように
 
