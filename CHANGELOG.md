@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.1.0
+## 2.1.0-beta.0
 * `AudioAssetConfigurationBase` に `loopOffset` を追加
 
 ## 2.0.1
