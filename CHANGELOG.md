@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.1.0-beta.1
+* @akashic/pdi-types @1.13.0-beta.0 に更新
+
+## 2.1.0-beta.0
+* `AudioAssetConfigurationBase` に `loopOffset` を追加
+
 ## 2.0.1
 * 不要となった `es6-promise` を削除
 

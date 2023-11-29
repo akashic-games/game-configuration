@@ -166,8 +166,15 @@ export interface AudioAssetConfigurationBase extends AssetConfigurationBase {
 
 	/**
 	 * 再生開始位置。単位はミリ秒。
+	 * 指定がない場合、0 として扱われる。
 	 */
 	offset?: number;
+
+	/**
+	 * ループ時の再生開始位置。単位はミリ秒。
+	 * 指定された場合、offset の指定より優先的に参照される。
+	 */
+	loopOffset?: number;
 }
 
 /**
