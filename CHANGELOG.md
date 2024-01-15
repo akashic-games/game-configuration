@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.1.0
+* `GameConfiguration` に `environment.features` を追加
+
 ## 2.0.1
 * 不要となった `es6-promise` を削除
 
