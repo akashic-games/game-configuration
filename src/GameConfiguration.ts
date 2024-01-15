@@ -123,6 +123,7 @@ export interface Environment {
 	// niconico は非推奨だが、互換性を保つために nicolive と並列に定義
 	niconico?: NicoliveEnvironment;
 	external?: External;
+	features?: Features[];
 }
 
 export interface AkashicRuntime {
@@ -151,3 +152,5 @@ export type NicoliveSupportedModes = "single" | "ranking" | "multi_admission" | 
 export interface External {
 	[key: string]: string;
 }
+
+export type Features = "WebAssembly";
