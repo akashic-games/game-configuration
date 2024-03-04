@@ -1,4 +1,10 @@
-import type { AssetConfiguration, AssetConfigurationMap, AudioSystemConfigurationMap, ModuleMainScriptsMap } from "./AssetConfiguration";
+import type {
+	AssetConfiguration,
+	AssetConfigurationMap,
+	AudioSystemConfigurationMap,
+	ModuleMainPathsMap,
+	ModuleMainScriptsMap
+} from "./AssetConfiguration";
 import type { OperationPluginInfo } from "./OperationPluginInfo";
 
 /**
@@ -57,6 +63,15 @@ export interface GameConfiguration {
 	 * require()の第一引数をキーとした値が本テーブルに存在した場合、require()時にその値をパスとしたスクリプトアセットを評価する。
 	 */
 	moduleMainScripts?: ModuleMainScriptsMap;
+
+	/**
+	 * require()解決用ののエントリポイントを格納したテーブル。
+	 *
+	 * require()の第一引数をキーとした値が本テーブルに存在した場合、require()時にその値をパスとしたスクリプトアセットを評価する。
+	 * 対象モジュールの package.json のパスをキーとし、値は package.json の main プロパティのパスとなる。
+	 * 現状、moduleMainScripts と同じ役割となるが、将来的には moduleMainScripts を deprecated としていく。
+	 */
+	moduleMainPaths?: ModuleMainPathsMap;
 
 	/**
 	 * デフォルトローディングシーンについての指定。
