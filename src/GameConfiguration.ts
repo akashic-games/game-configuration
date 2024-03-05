@@ -61,15 +61,14 @@ export interface GameConfiguration {
 	 * require()解決用ののエントリポイントを格納したテーブル。
 	 *
 	 * require()の第一引数をキーとした値が本テーブルに存在した場合、require()時にその値をパスとしたスクリプトアセットを評価する。
+	 * 現状、moduleMainPaths と同じ役割となるが、将来的には moduleMainScripts を deprecated としていく。
 	 */
 	moduleMainScripts?: ModuleMainScriptsMap;
 
 	/**
-	 * require()解決用ののエントリポイントを格納したテーブル。
+	 * require()解決用のエントリポイントを格納したテーブル。
 	 *
-	 * require()の第一引数をキーとした値が本テーブルに存在した場合、require()時にその値をパスとしたスクリプトアセットを評価する。
-	 * 対象モジュールの package.json のパスをキーとし、値は package.json の main プロパティのパスとなる。
-	 * 現状、moduleMainScripts と同じ役割となるが、将来的には moduleMainScripts を deprecated としていく。
+	 * package.json のパスをキーに、その main フィールドの内容を値に持つテーブル
 	 */
 	moduleMainPaths?: ModuleMainPathsMap;
 
