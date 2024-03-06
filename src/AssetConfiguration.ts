@@ -11,6 +11,12 @@ export type AssetConfigurationMap = { [key: string]: AssetConfiguration };
 export type ModuleMainScriptsMap = { [path: string]: string };
 
 /**
+ * require()解決用のエントリポイント
+ * 現状、moduleMainScripts と同じ役割となるが、将来的には moduleMainScripts を deprecated としていく。
+ */
+export type ModuleMainPathsMap = { [path: string]: string };
+
+/**
  * AudioSystemの設定を表すインターフェース。
  */
 export interface AudioSystemConfiguration {

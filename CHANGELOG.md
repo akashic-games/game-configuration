@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.2.0
+* `GameConfiguration` に `moduleMainPaths` を追加
+
 ## 2.1.0
 * `GameConfiguration` に `environment.features` を追加
 
