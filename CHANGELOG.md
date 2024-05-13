@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.3.0
+* `GameConfiguration` に `renderers` を追加
+
 ## 2.2.0
 * `GameConfiguration` に `moduleMainPaths` を追加
 

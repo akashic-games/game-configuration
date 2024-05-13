@@ -1,3 +1,4 @@
+import type { RendererCandidate } from "@akashic/pdi-types";
 import type {
 	AssetConfiguration,
 	AssetConfigurationMap,
@@ -97,6 +98,8 @@ export interface GameConfiguration {
 	maxPoints?: number;
 
 	environment?: Environment;
+
+	renderers?: (string | RendererCandidate)[];
 }
 
 export interface NormalizedGameConfiguration extends GameConfiguration {
