@@ -89,7 +89,7 @@
     ]
   },
   "dependencies": {
-    "@akashic/pdi-types": "^1.11.1"
+    "@akashic/pdi-types": "^1.14.0"
   },
   "devDependencies": {
     "@akashic/eslint-config": "^2.0.0",
