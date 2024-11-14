@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## unreleased changes
+## 2.4.0
 * `GameConfiguration` に `assetBundle` を追加
 * `AssetBundleConfiguration` および `BundledAssetConfiguration` を追加
 
