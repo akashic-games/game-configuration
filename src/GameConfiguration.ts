@@ -100,6 +100,8 @@ export interface GameConfiguration {
 	environment?: Environment;
 
 	renderers?: (string | RendererCandidate)[];
+
+	assetBundle?: string;
 }
 
 export interface NormalizedGameConfiguration extends GameConfiguration {

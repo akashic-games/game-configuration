@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.4.0
+* `GameConfiguration` に `assetBundle` を追加
+* `AssetBundleConfiguration` および `BundledAssetConfiguration` を追加
+
 ## 2.3.0
 * `GameConfiguration` に `renderers` を追加
 
