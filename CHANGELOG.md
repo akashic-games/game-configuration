@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.5.0
+* `BundledAssetConfiguration` に `BundledTextAssetConfiguration` を追加
+
 ## 2.4.0
 * `GameConfiguration` に `assetBundle` を追加
 * `AssetBundleConfiguration` および `BundledAssetConfiguration` を追加
