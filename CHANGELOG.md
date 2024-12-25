@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## unreleased changes
+## 2.5.0
 * `BundledAssetConfiguration` に `BundledTextAssetConfiguration` を追加
 
 ## 2.4.0
