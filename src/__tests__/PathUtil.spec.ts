@@ -60,16 +60,16 @@ describe("PathUtil", () => {
 		it("rejects invalid arguments", () => {
 			expect(() => {
 				PathUtil.resolvePath("hoge/", "../../a.js");
-			}).toThrowError("PathUtil.resolvePath: invalid arguments");
+			}).toThrow("PathUtil.resolvePath: invalid arguments");
 			expect(() => {
 				PathUtil.resolvePath(".", "../a.js");
-			}).toThrowError("PathUtil.resolvePath: invalid arguments");
+			}).toThrow("PathUtil.resolvePath: invalid arguments");
 			expect(() => {
 				PathUtil.resolvePath("./", "../a.js");
-			}).toThrowError("PathUtil.resolvePath: invalid arguments");
+			}).toThrow("PathUtil.resolvePath: invalid arguments");
 			expect(() => {
 				PathUtil.resolvePath("./hoge", "./../../a.js");
-			}).toThrowError("PathUtil.resolvePath: invalid arguments");
+			}).toThrow("PathUtil.resolvePath: invalid arguments");
 		});
 	});
 
